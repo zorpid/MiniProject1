@@ -35,13 +35,14 @@ while (true)
     Console.WriteLine("Product added successfully!");
 }
 
-productManager.PrintSumSorted();
+//productManager.PrintSumSorted();
 productManager.PrintProductDetails();
 
 while (true)
 {
-    Console.ResetColor();
+    Console.ForegroundColor = ConsoleColor.Blue;
     Console.WriteLine("\nTo enter a new product - enter: \"P\" | To search for a product - enter: \"S\" | To quit - enter: \"Q\"");
+    Console.ResetColor();
     Console.Write("Enter your choice: ");
     string userChoice = Console.ReadLine().ToUpper();
 
@@ -51,14 +52,16 @@ while (true)
             // Loop to add new product
             while (true)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("To enter a new product - follow the steps | To quit - enter: Q");
                 Console.ResetColor();
                 
-                Console.Write("Enter Category or type 'q' to quit adding products: ");
+                Console.Write("Enter Category: ");
                 string newCategory = Console.ReadLine();
                 if (newCategory.ToLower() == "q") break;
 
                 
-                Console.Write("Enter Product Name or type 'q' to quit adding products: ");
+                Console.Write("Enter Product Name: ");
                 string newProductName = Console.ReadLine();
                 if (newProductName.ToLower() == "q") break;
 
@@ -67,7 +70,7 @@ while (true)
                 
                 while (true)
                 {
-                    Console.Write("Enter Product Price or type 'q' to quit adding products: ");
+                    Console.Write("Enter Product Price: ");
                     string priceInput = Console.ReadLine();
                     if (priceInput.ToLower() == "q") break;
 
@@ -99,6 +102,7 @@ while (true)
             var product = productManager.SearchProduct(searchName);
             if (product != null)
             {
+                
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"Product Found: Category - {product.Category}, Name - {product.ProductName}, Price - {product.Price:C}");
             }

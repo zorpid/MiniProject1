@@ -14,12 +14,18 @@ internal class ProductListManager
     // 
     public void PrintProductDetails()
     {
+
+        var sortedProducts = productList.OrderBy(p => p.Price).ToList();
         Console.WriteLine("--------------------------------------------------------------------");
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Category".PadRight(15) + "Product".PadRight(15) + "Price".PadRight(15));
-        foreach (var product in productList)
+        Console.ResetColor();
+        foreach (var product in sortedProducts)
         {
             Console.WriteLine(product.Category.PadRight(15) + product.ProductName.PadRight(15) + product.Price.ToString().PadRight(1));
         }
+        double totalAmount = productList.Sum(product => product.Price);
+        Console.WriteLine( "".PadRight(15)+"Total amount:".PadRight(15)+totalAmount );
         Console.WriteLine("--------------------------------------------------------------------");
     }
 
@@ -52,8 +58,8 @@ internal class ProductListManager
             {
                 if (product.ProductName.Equals(foundProduct.ProductName, StringComparison.OrdinalIgnoreCase))
                 {
-                    
-                    Console.ForegroundColor = ConsoleColor.Cyan; // Highlight color
+
+                    Console.ForegroundColor = ConsoleColor.Magenta; // Highlight color
                 }
                 else
                 {
@@ -70,4 +76,5 @@ internal class ProductListManager
         return foundProduct;
     }
 
+    
 }
